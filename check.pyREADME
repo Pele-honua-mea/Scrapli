@@ -1,0 +1,50 @@
+# Scrapli Network Health Checker
+
+This script uses **Scrapli**, a Python library, to connect to a Cisco IOS XE device and run a series of network health check commands. It performs these tasks over SSH with **Paramiko** transport and provides output for various network statistics.
+
+## Requirements
+
+Before running this script, make sure you have the following dependencies installed:
+
+- **Python 3.x**
+- **Scrapli** library for interacting with network devices
+- **Paramiko** (used as transport for SSH)
+
+#Usage
+1. Clone the Repository:
+  git clone https://github.com/your-username/your-repository.git
+
+2. Edit the Script:
+- This script connects to a Cisco device using the IOSXEDriver
+- You must modify the MY_DEVICE dictionary with the correct device details.
+                Example:
+MY_DEVICE = {
+    "host": "your-device-ip-or-hostname",
+    "auth_username": "your-username",
+    "auth_password": "your-password",
+    "auth_strict_key": False,
+    "transport": "paramiko"
+}
+
+3. Run the Script:
+Once the script is set up, you can execute it directly from the terminal:
+  python check.py
+
+4. Output:
+The script will run a set of health-check commands on the device and print the output to the terminal. The following commands are executed:
+- show ip interface brief,
+- show ip route,
+- show ip arp,
+- show version,
+- show vlan brief,
+- show interfaces,
+
+Each command's output will be printed to the terminal.
+
+5. Close the Connection
+Once the commands are executed, the script closes the SSH connection using conn.close() 
+
+6. Troubleshooting:
+- SSH Connection Issues: Ensure that the device's SSH service is running and accessible. You can check network connectivity with ping or telnet.
+- Authentication Errors: Double-check your username and password, and ensure that the device allows SSH access with the credentials you provided.
+- Missing Libraries: Make sure Scrapli and Paramiko are installed correctly using pip.
